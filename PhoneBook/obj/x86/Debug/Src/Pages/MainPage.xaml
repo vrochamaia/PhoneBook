@@ -1,0 +1,75 @@
+﻿<Page
+    x:Class="PhoneBook.Src.Pages.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PhoneBook.Src.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid x:ConnectionId='1' Name="layoutRoot">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+
+
+        <Grid Grid.Row="0" Background="{StaticResource appHeaderColor}">
+
+            <Button x:ConnectionId='6' Name="btnMenu" Margin="10,0,0,0"  Background="Transparent"                       Style="{StaticResource btnStyleDefault}">
+                <Image Source="/Resources/Icons/ic_reorder_48pt.png" Height="30" Width="30"/>
+            </Button>
+
+            <TextBlock x:ConnectionId='7' Name="txtHeader" Text="Principal" Style="{StaticResource txtBlockPageHeaderStyle}"/>
+
+        </Grid>
+
+        <Grid Grid.Row="1">
+
+            <SplitView x:ConnectionId='2' Name="splitView"   CompactPaneLength="0" OpenPaneLength="200"  >
+                <SplitView.Pane >
+
+                    <Grid Background="{StaticResource appRedColor}" >
+
+                        <ListView x:ConnectionId='3' Name="listViewMenuOptions" Padding="10,10,0,0"                                       Style="{StaticResource llistViewMenuStyle}">
+
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Image Name="imgItemMenu" Grid.Column="0" Source="{Binding IconSource}" VerticalAlignment="Center" Height="30" Width="30"/>
+                                        <TextBlock Text="{Binding Name}" Grid.Column="1" Margin="10,0,0,0" Foreground="White" VerticalAlignment="Center" FontSize="15" />
+
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                    </Grid>
+
+
+
+                </SplitView.Pane>
+
+                <SplitView.Content>
+                    <Grid x:ConnectionId='4' Name="mainContainer" Margin="10,0,10,0" Background="{StaticResource appMainColor}">
+                        <TextBlock x:ConnectionId='5' Name="txtMain" Text="Bem vindo ao PhoneBook, utilize o menu para fazer o que deseja." FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center"/>
+                    </Grid>
+
+                </SplitView.Content>
+            </SplitView>
+
+        </Grid>
+
+
+    </Grid>
+
+</Page>
+

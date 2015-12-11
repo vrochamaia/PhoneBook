@@ -1,0 +1,98 @@
+﻿<Page
+    x:Class="PhoneBook.Src.Pages.GroupPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PhoneBook.Src.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid  Margin="0,10,0,0" Background="{StaticResource appMainColor}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Name="griHeader" Grid.Row="0" Margin="10,0,0,20">
+
+            <Button Name="btnCreateGroup" Click="onClickBtnCreateGroup" Style="{StaticResource btnStyleDefault}">
+                <Image Source="/Resources/Icons/ic_add_48pt.png" Height="30" Width="30"/>
+            </Button>
+
+            <Grid HorizontalAlignment="Right" VerticalAlignment="Center">
+
+                <StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox Name="txtSearchedValue"  PlaceholderText="Digite o nome do grupo" KeyUp="onKeyUpTxtSearchedValue" MinWidth="200" InputScope="Text"/>
+                        <Button Name="btnSearch" Click="onClickBtnSearch"  Style="{StaticResource btnStyleDefault}" >
+                            <Image Source="/Resources/Icons/ic_search_48pt.png" Height="30" Width="30" />
+                        </Button>
+                    </StackPanel>
+                 
+
+                </StackPanel>
+
+            </Grid>
+        </Grid>
+
+
+        <Grid Grid.Row="1" >
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+
+
+            <Border Grid.Row="0" BorderThickness="0,0,0,1" BorderBrush="Black" >
+                <Grid  VerticalAlignment="Center" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Nome" Grid.Column="0" Style="{StaticResource listViewLabel}"/>
+                    <TextBlock Text="Participantes" Grid.Column="1" Style="{StaticResource listViewLabel}"/>
+
+                </Grid>
+
+            </Border>
+
+            <TextBlock Name="txtNoGroupsFounded"  Grid.Row="1" Text="Nenhum grupo encontrado." Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <ProgressBar Name="progressBarListViewGroups" Grid.Row="1" Visibility="Collapsed" IsIndeterminate="True" IsEnabled="True" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="300" />
+
+            <ListView Name="listViewGroups" Grid.Row="1" Margin="0,20,0,0" Tapped="listViewGroups_Tapped" >
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+
+                        <Border BorderThickness="0,0,0,1" BorderBrush="LightGray" Padding="0,10,0,10">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition  Width="*"/>
+                                    <ColumnDefinition  Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Text="{Binding Name}" Grid.Column="0"  Style="{StaticResource listViewItem}"/>
+                                <TextBlock Text="{Binding GroupContactsName}" Grid.Column="1" TextWrapping="Wrap" TextAlignment="Center"  Style="{StaticResource listViewItem}"/>
+                            </Grid>
+                        </Border>
+
+
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter  Property="HorizontalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+            </ListView>
+        </Grid>
+    </Grid>
+</Page>
